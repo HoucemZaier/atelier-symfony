@@ -34,9 +34,10 @@ final class AuthorController extends AbstractController
             ['id' => 2, 'picture' => '/images/Shakespeare.jpg', 'username' => 'William Shakespeare', 'email' => 'william.shakespeare@gmail.com', 'nb_books' => 200],
             ['id' => 3, 'picture' => '/images/Taha_Hussein.jpg', 'username' => 'Taha Hussein', 'email' => 'taha.hussein@gmail.com', 'nb_books' => 300],
         ];
-
+        $totalBooks = array_sum(array_column($authors, 'nb_books'));
         return $this->render('author/list.html.twig', [
             'authors' => $authors,
+            'totalBooks' => $totalBooks,
         ]);
     }
 }

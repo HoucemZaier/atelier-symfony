@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Liste des Auteurs</h1>
+    <p>Nombre total d'auteurs : {{ authors|length }}</p>
     {% if authors is defined and authors|length > 0 %}
         <ul>
             {% for author in authors %}
