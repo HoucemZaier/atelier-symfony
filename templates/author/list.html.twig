@@ -10,8 +10,7 @@
         <ul>
             {% for author in authors %}
                 <li>
-                    <img src="{{ author.picture }}" alt="{{ author.username }}" width="100">
-                    {{ author.username|upper }} ({{ author.email }}) - Livres : {{ author.nb_books }}
+                    <a href="{{ path('app_author_details', {'id': author.id}) }}">détails</a> {{ author.username|upper }} ({{ author.email }}) - Livres : {{ author.nb_books }}
                 </li>
             {% endfor %}
         </ul>

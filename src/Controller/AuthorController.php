@@ -25,7 +25,7 @@ final class AuthorController extends AbstractController
         ]);
     }
 
-    // nouvelle route pour afficher la liste des auteurs (exercice1 )
+    // nouvelle route pour afficher la liste des auteurs 
     #[Route('/author/list', name: 'author_list')]
     public function listAuthors(): Response
     {
@@ -38,6 +38,23 @@ final class AuthorController extends AbstractController
         return $this->render('author/list.html.twig', [
             'authors' => $authors,
             'totalBooks' => $totalBooks,
+        ]);
+    }
+
+    // nouvelle route affichier les details de chaque auteur
+    #[Route('/author/details/{id}', name: 'app_author_details')]
+    public function authorDetails(int $id): Response
+    {
+        $authors = [
+            ['id' => 1, 'picture' => 'images/Victor_Hugo.jpg', 'username' => 'Victor Hugo', 'email' => 'victor.hugo@gmail.com', 'nb_books' => 100],
+            ['id' => 2, 'picture' => 'images/Shakespeare.jpg', 'username' => 'William Shakespeare', 'email' => 'william.shakespeare@gmail.com', 'nb_books' => 200],
+            ['id' => 3, 'picture' => 'images/Taha_Hussein.jpg', 'username' => 'Taha Hussein', 'email' => 'taha.hussein@gmail.com', 'nb_books' => 300],
+        ];
+        $author = array_filter($authors, fn($a) => $a['id'] == $id);
+        $author = array_values($author)[0] ?? null;
+
+        return $this->render('author/showAuthor.html.twig', [
+            'author' => $author,
         ]);
     }
 }
